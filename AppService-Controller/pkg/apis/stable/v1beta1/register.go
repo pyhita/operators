@@ -6,17 +6,17 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 )
 
-// SchemaGroupVersion is group version used to register these objects
-var SchemaGroupVersion = schema.GroupVersion{Group: "stable.example.com", Version: "v1beta1"}
+// SchemeGroupVersion is group version used to register these objects
+var SchemeGroupVersion = schema.GroupVersion{Group: "stable.example.com", Version: "v1beta1"}
 
 // Kind takes an unqulified resource and returns back a Group qualfied GroupResource
 func Kind(kind string) schema.GroupKind {
-	return SchemaGroupVersion.WithKind(kind).GroupKind()
+	return SchemeGroupVersion.WithKind(kind).GroupKind()
 }
 
 // Resource takes an unqualified resource and returns a Group qualified GroupResource
 func Resource(resource string) schema.GroupResource {
-	return SchemaGroupVersion.WithResource(resource).GroupResource()
+	return SchemeGroupVersion.WithResource(resource).GroupResource()
 }
 
 var (
@@ -28,10 +28,10 @@ var (
 
 // Adds the list of known types to Scheme.
 func addKnownTypes(scheme *runtime.Scheme) error {
-	scheme.AddKnownTypes(SchemaGroupVersion,
+	scheme.AddKnownTypes(SchemeGroupVersion,
 		&AppService{},
 		&AppServiceList{},
 	)
-	metav1.AddToGroupVersion(scheme, SchemaGroupVersion)
+	metav1.AddToGroupVersion(scheme, SchemeGroupVersion)
 	return nil
 }
