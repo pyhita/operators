@@ -1,0 +1,12 @@
+apiVersion: stable.example.com/v1beta1
+kind: AppService
+metadata:
+  name: nginx-app
+spec:
+  image: nginx:latest
+  labels:
+    app: nginx
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30001
